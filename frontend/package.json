@@ -30,7 +30,7 @@
         "crypto-js": "3.3.0",
         "highlight.js": "11.4.0",
         "lodash-es": "4.17.21",
-        "moment": "2.29.1",
+        "moment": "^2.29.4",
         "ng-apexcharts": "1.7.0",
         "ngx-markdown": "13.1.0",
         "ngx-quill": "16.1.2",
@@ -41,7 +41,7 @@
         "zone.js": "0.11.4"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "13.2.4",
+        "@angular-devkit/build-angular": "^13.3.9",
         "@angular-eslint/builder": "13.1.0",
         "@angular-eslint/eslint-plugin": "13.1.0",
         "@angular-eslint/eslint-plugin-template": "13.1.0",

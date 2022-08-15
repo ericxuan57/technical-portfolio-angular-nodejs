@@ -1,106 +1,39 @@
 <div class="flex flex-col flex-auto min-w-0">
 
     <!-- Main -->
-    <div class="flex-auto border-t -mt-px pt-4 sm:pt-6">
-        <div class="w-full max-w-screen-xl mx-auto">
-            <!-- Tabs -->
-            <mat-tab-group
-                class="sm:px-2"
-                [animationDuration]="'0'">
+    <div class="flex-auto p-6 sm:p-10">
 
-                <!-- Home -->
-                <mat-tab label="Home">
-                    <ng-template matTabContent>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0">
-                            <div class="sm:col-span-2 md:col-span-4 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
-                                <div class="flex flex-col sm:flex-row items-start justify-between">
-                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Github Issues Summary</div>
-                                    <div class="mt-3 sm:mt-0 sm:ml-2">
-                                        <mat-button-toggle-group
-                                            value="this-week"
-                                            #githubIssuesWeekSelector="matButtonToggleGroup">
-                                            <mat-button-toggle value="last-week">Last Week</mat-button-toggle>
-                                            <mat-button-toggle value="this-week">This Week</mat-button-toggle>
-                                        </mat-button-toggle-group>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-1 lg:grid-cols-2 grid-flow-row gap-6 w-full mt-8 sm:mt-4">
-                                    <!-- New vs. Closed -->
-                                    <div class="flex flex-col flex-auto">
-                                        <div class="font-medium text-secondary">New vs. Closed</div>
-                                        <div class="flex flex-col flex-auto">
-                                            <apx-chart
-                                                class="flex-auto w-full h-80"
-                                                [chart]="chartGithubIssues.chart"
-                                                [colors]="chartGithubIssues.colors"
-                                                [dataLabels]="chartGithubIssues.dataLabels"
-                                                [grid]="chartGithubIssues.grid"
-                                                [labels]="chartGithubIssues.labels"
-                                                [legend]="chartGithubIssues.legend"
-                                                [plotOptions]="chartGithubIssues.plotOptions"
-                                                [series]="chartGithubIssues.series[githubIssuesWeekSelector.value]"
-                                                [states]="chartGithubIssues.states"
-                                                [stroke]="chartGithubIssues.stroke"
-                                                [tooltip]="chartGithubIssues.tooltip"
-                                                [xaxis]="chartGithubIssues.xaxis"
-                                                [yaxis]="chartGithubIssues.yaxis"></apx-chart>
-                                        </div>
-                                    </div>
-                                    <!-- Overview -->
-                                    <div class="flex flex-col">
-                                        <div class="font-medium text-secondary">Overview</div>
-                                        <div class="flex-auto grid grid-cols-4 gap-4 mt-6">
-                                            <!-- New issues -->
-                                            <div class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-indigo-50 text-indigo-800 dark:bg-white dark:bg-opacity-5 dark:text-indigo-400">
-                                                <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
-                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['new-issues']}}
-                                                </div>
-                                                <div class="mt-1 text-sm sm:text-lg font-medium">New Issues</div>
-                                            </div>
-                                            <!-- Closed -->
-                                            <div class="col-span-2 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-green-50 text-green-800 dark:bg-white dark:bg-opacity-5 dark:text-green-500">
-                                                <div class="text-5xl sm:text-7xl font-semibold leading-none tracking-tight">
-                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['closed-issues']}}
-                                                </div>
-                                                <div class="mt-1 text-sm sm:text-lg font-medium">Closed</div>
-                                            </div>
-                                            <!-- Fixed -->
-                                            <div class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-gray-100 text-secondary dark:bg-white dark:bg-opacity-5">
-                                                <div class="text-5xl font-semibold leading-none tracking-tight">
-                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['fixed']}}
-                                                </div>
-                                                <div class="mt-1 text-sm font-medium text-center">Fixed</div>
-                                            </div>
-                                            <!-- Won't fix -->
-                                            <div class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-gray-100 text-secondary dark:bg-white dark:bg-opacity-5">
-                                                <div class="text-5xl font-semibold leading-none tracking-tight">
-                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['wont-fix']}}
-                                                </div>
-                                                <div class="mt-1 text-sm font-medium text-center">Won't Fix</div>
-                                            </div>
-                                            <!-- Re-opened -->
-                                            <div class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-gray-100 text-secondary dark:bg-white dark:bg-opacity-5">
-                                                <div class="text-5xl font-semibold leading-none tracking-tight">
-                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['re-opened']}}
-                                                </div>
-                                                <div class="mt-1 text-sm font-medium text-center">Re-opened</div>
-                                            </div>
-                                            <!-- Needs triage -->
-                                            <div class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center py-8 px-1 rounded-2xl bg-gray-100 text-secondary dark:bg-white dark:bg-opacity-5">
-                                                <div class="text-5xl font-semibold leading-none tracking-tight">
-                                                    {{data.githubIssues.overview[githubIssuesWeekSelector.value]['needs-triage']}}
-                                                </div>
-                                                <div class="mt-1 text-sm font-medium text-center">Needs Triage</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                </mat-tab>
+        <!-- CONTENT GOES HERE -->
+        <div class="h-300 min-h-300 max-h-400 border-2 rounded-2xl">
+            <div class="flex items-center justify-between w-full p-4 bg-slate-200">
+                <div>
+                    <div class="text-3xl font-semibold tracking-tight leading-8">Projects code</div>
+                </div>
+                <div class="flex items-center ml-6">
+                    <button
+                        class="ml-4"
+                        mat-flat-button
+                        [color]="'primary'"
+                        (click)="showCreationModal()">
+                        <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                        <span class="ml-2 mr-1">Create</span>
+                    </button>
 
-            </mat-tab-group>
+                    <!-- Actions menu (visible on xs) -->
+                    <div class="sm:hidden">
+                        <button
+                            [matMenuTriggerFor]="actionsMenu"
+                            mat-icon-button>
+                            <mat-icon [svgIcon]="'heroicons_outline:dots-vertical'"></mat-icon>
+                        </button>
+                        <mat-menu #actionsMenu="matMenu">
+                            <button mat-menu-item>Add</button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div>
+            </div>
         </div>
     </div>
 

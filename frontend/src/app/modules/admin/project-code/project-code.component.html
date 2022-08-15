@@ -1,0 +1,45 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+
+        <!-- CONTENT GOES HERE -->
+        <div class="h-300 min-h-300 max-h-400 border-2 rounded-2xl">
+            <div class="flex items-center justify-between w-full p-4 bg-slate-200">
+                <div>
+                    <div class="text-3xl font-semibold tracking-tight leading-8">Projects code</div>
+                </div>
+                <div class="flex items-center ml-6">
+                    <button
+                        class="ml-4"
+                        mat-flat-button
+                        [color]="'primary'"
+                        (click)="showCreationModal()">
+                        <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                        <span class="ml-2 mr-1">Create</span>
+                    </button>
+
+                    <!-- Actions menu (visible on xs) -->
+                    <div class="sm:hidden">
+                        <button
+                            [matMenuTriggerFor]="actionsMenu"
+                            mat-icon-button>
+                            <mat-icon [svgIcon]="'heroicons_outline:dots-vertical'"></mat-icon>
+                        </button>
+                        <mat-menu #actionsMenu="matMenu">
+                            <button mat-menu-item>Add</button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <!-- <div class="btn-group d-block text-center">
+                    <button class="btn btn-sm btn-dark" (click)="onAction1()">Action 1</button>
+                </div>
+
+                <table datatable [dtOptions]="dtOptions" class="row-border hover"></table> -->
+            </div>
+        </div>
+    </div>
+
+</div>

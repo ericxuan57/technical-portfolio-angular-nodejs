@@ -1,14 +1,16 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ADTSettings, } from 'angular-datatables/src/models/settings';
 import { Subject, takeUntil } from 'rxjs';
 import { ApexOptions } from 'ng-apexcharts';
-import { ProjectCodeService } from '../../../core/services/projectCode.service';
-import { ProjectCodeDialogComponent } from './components/projectCodeDialog/projectCodeDialog.component';
+import { ProjectCodeService } from '../../../core/services/project-code.service';
+import { DialogComponent } from './components/dialog/dialog.component';
+// import { ProjectCodeTableComponent } from './components/projectCodeTable/table.component';
 
 @Component({
     selector       : 'projectCode',
-    templateUrl    : './projectCode.component.html',
+    templateUrl    : './project-code.component.html',
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -21,8 +23,12 @@ export class ProjectCodeComponent implements OnInit, OnDestroy
     chartMonthlyExpenses: ApexOptions = {};
     chartYearlyExpenses: ApexOptions = {};
     data: any;
+
+    dtOptions: ADTSettings = {};
+
     selectedProjectCode: string = 'ACME Corp. Backend App';
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    // public table: ProjectCodeTableComponent
 
     /**
      * Constructor
@@ -40,7 +46,7 @@ export class ProjectCodeComponent implements OnInit, OnDestroy
             .subscribe(
                 (response) => {
                     
-                    const dialogRef = this.dialog.open(ProjectCodeDialogComponent, {
+                    const dialogRef = this.dialog.open(DialogComponent, {
                         width: 'auto',
                         data: { activities: response.activities, dependency: response.dependency, headquarter: response.headquarter, orderNumber: response.orderNumber, years: response.years, today: response.today},
                     });
@@ -62,10 +68,9 @@ export class ProjectCodeComponent implements OnInit, OnDestroy
     ngOnInit(): void
     {
         // Get the data
-        this._projectCodeService.data$
+        this._projectCodeService.getProjectCodes()
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((data) => {
-
                 // Store the data
                 this.data = data;
             });

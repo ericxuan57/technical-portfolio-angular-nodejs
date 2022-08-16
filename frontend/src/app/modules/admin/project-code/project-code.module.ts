@@ -20,14 +20,16 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { TranslocoModule } from '@ngneat/transloco';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { SharedModule } from 'app/shared/shared.module';
-import { ProjectCodeComponent } from './projectCode.component';
-import { ProjectCodeDialogComponent } from './components/projectCodeDialog/projectCodeDialog.component';
-import { projectCodeRoutes } from './projectCode.routing';
+import { ProjectCodeComponent } from './project-code.component';
+import { projectCodeRoutes } from './project-code.routing';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
     declarations: [
         ProjectCodeComponent,
-        ProjectCodeDialogComponent
+        DialogComponent,
+        TableComponent,
     ],
     imports     : [
         RouterModule.forChild(projectCodeRoutes),

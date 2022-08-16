@@ -1,0 +1,77 @@
+<h1 mat-dialog-title>Create Project Code</h1>
+<form [formGroup]="_form" (ngSubmit)="addNewProjectCode()">
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field [style.width.%]="100" 
+                class="flex-auto fuse-mat-dense fuse-mat-emphasized-affix">
+                <mat-label>Number of order</mat-label>
+                <input matInput formControlName="visibleOrderNumber" readonly>
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:info-circle'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <mat-form-field [style.width.%]="100"
+            class="flex-auto gt-xs:pr-3">
+            <mat-label>Activities idi</mat-label>
+            <mat-select formControlName="activities" required>
+                <mat-option *ngFor="let activity of data.activities;let indexOfelement=index;" [value]="data.activities[indexOfelement].id">{{data.activities[indexOfelement].nombre + '-' + data.activities[indexOfelement].sigla}}</mat-option>
+            </mat-select>
+            <mat-icon
+                class="icon-size-5"
+                matPrefix
+                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+        </mat-form-field>
+        <mat-form-field [style.width.%]="100"
+            class="flex-auto gt-xs:pr-3">
+            <mat-label>Dependency</mat-label>
+            <mat-select formControlName="dependency" required>
+                <mat-option *ngFor="let dependency of data.dependency;let indexOfelement=index;" [value]="data.dependency[indexOfelement].id">{{data.dependency[indexOfelement].nombre + '-' + data.dependency[indexOfelement].sigla}}</mat-option>
+            </mat-select>
+            <mat-icon
+                class="icon-size-5"
+                matPrefix
+                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+        </mat-form-field>
+        <mat-form-field [style.width.%]="100"
+            class="flex-auto gt-xs:pr-3">
+            <mat-label>Headquarter</mat-label>
+            <mat-select formControlName="headquarter" required>
+                <mat-option *ngFor="let headquarter of data.headquarter;let indexOfelement=index;" [value]="data.headquarter[indexOfelement].id">{{data.headquarter[indexOfelement].nombre + '-' + data.headquarter[indexOfelement].sigla}}</mat-option>
+            </mat-select>
+            <mat-icon
+                class="icon-size-5"
+                matPrefix
+                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+        </mat-form-field>
+        <mat-form-field [style.width.%]="100"
+            class="flex-auto gt-xs:pr-3">
+            <mat-label>Year</mat-label>
+            <mat-select formControlName="year" [(value)]="selected" required>
+                <mat-option *ngFor="let year of data.years;let indexOfelement=index;" [value]="data.years[indexOfelement]">{{data.years[indexOfelement]}}</mat-option>
+            </mat-select>
+            <mat-icon
+                class="icon-size-5"
+                matPrefix
+                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+        </mat-form-field>
+        <mat-form-field [style.width.%]="100"
+            class="flex-auto">
+            <mat-label>Creation time</mat-label>
+            <input formControlName="creationDate" matInput [matDatepicker]="creationDate" placeholder="Hire Date" required />
+            <mat-datepicker-toggle matSuffix [for]="creationDate"></mat-datepicker-toggle>
+            <mat-datepicker #creationDate></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions align="end">
+        <button
+            type="submit"
+            class="ml-4 mr-4"
+            mat-flat-button
+            [color]="'primary'"
+        >
+            <span class="ml-2 mr-1">Create</span>
+        </button>
+    </div>
+</form>

@@ -29,11 +29,10 @@ exports.signIn = async (req, res) => {
   try {
     const user = await db.user.findOne({ where: { email: req.body.email } });
     if (bcrypt.comparePasswords(req.body.password, user.password)) {
-      const accessToken = generateAccessToken({
+      const accessToken = await generateAccessToken({
         id: user.id,
         email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName
+        username: user.usuario
       });
 
       return res.json({ status: JSON.stringify(user), accessToken: accessToken })

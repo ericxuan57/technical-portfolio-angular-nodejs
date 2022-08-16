@@ -21,6 +21,6 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.DATE
       },
     },
-    { timestamps: false }
+    { timestamps: false, freezeTableName: true }
   );
 };

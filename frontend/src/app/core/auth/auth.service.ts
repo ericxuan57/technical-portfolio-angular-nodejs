@@ -88,7 +88,7 @@ export class AuthService
                     this.accessToken = response.accessToken;
                     delete user.id;
                     delete user.password;
-                    user.name = user.firstName + " " + user.lastName;
+                    
                     this.userInfo = user; 
 
                     // Set the authenticated flag to true
@@ -152,7 +152,7 @@ export class AuthService
      *
      * @param user
      */
-    signUp(user: { name: string; email: string; password: string}): Observable<any>
+    signUp(user: { usuario: string; email: string; password: string}): Observable<any>
     {
         return this._httpClient.post(this._api + '/api/auth/sign-up', user);
     }

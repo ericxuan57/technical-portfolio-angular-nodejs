@@ -1,36 +1,31 @@
 module.exports = (sequelize, Sequelize) => {
   return sequelize.define(
-    'user',
+    'usuario',
     {
+      id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+        required: true,
+      },
+      usuario: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        required: true,
+      },
       email: {
         type: Sequelize.STRING
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        required: true,
       },
-      firstName: {
-        type: Sequelize.STRING
-      },
-      lastName: {
-        type: Sequelize.STRING
-      },
-      gender: {
-        type: Sequelize.ENUM({
-          values: ['male', 'female']
-        }),
-      },
-      phone: {
-        type: Sequelize.STRING
-      },
-      deleted_at: {
+      tiempo_creacion: {
         type: Sequelize.DATE
       },
-      soft_delete: {
-        type: Sequelize.TINYINT
-      },
-      is_super_admin: {
-        type: Sequelize.TINYINT
-      },
-    }
+    },
+    { timestamps: false, freezeTableName: true }
   );
 };
